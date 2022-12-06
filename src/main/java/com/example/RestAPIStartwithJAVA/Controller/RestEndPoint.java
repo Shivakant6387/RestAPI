@@ -1,8 +1,6 @@
 package com.example.RestAPIStartwithJAVA.Controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RestEndPoint {
@@ -11,5 +9,9 @@ public class RestEndPoint {
                               @RequestParam (value = "chepterCount",defaultValue = " 2",required = false)int chepterCount
     ){
     return new Course(name,chepterCount);
+    }
+    @RequestMapping(method = RequestMethod.POST,value = "/register/course")
+    public String saveCourse(@RequestBody Course course){
+        return "Your course named"+course.getName()+"with"+course.getChepterCount()+"chepter saved successfully";
     }
 }
